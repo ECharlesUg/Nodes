@@ -1,4 +1,5 @@
 ﻿using Nodes;
+using System;
 
 internal class Program
 {
@@ -13,20 +14,42 @@ internal class Program
         node1.Next = node3;
         node3.Next = node2;
 
-
+        SortNodes(node4);
         Nodes(node4);
+    }
 
-        static void Nodes(Node node)
+    static void Nodes(Node node)
+    {
+        while (node != null)
         {
-            while (node != null)
+            Console.Write(node);
+            node = node.Next;
+            if (node != null)
+                Console.Write(" -> ");
+        }
+        Console.Write(" -> ");
+        Console.Write("Null");
+    }
+
+    public static void SortNodes(Node head)
+    {
+        Node currentTerm = head;
+        while (currentTerm != null)
+        {
+            Node term = currentTerm.Next;
+
+            while (term != null)
             {
-                Console.Write(node);
-                node = node.Next;
-                if (node != null)
-                    Console.Write(" -> ");
+                if (currentTerm.Data > term.Data)
+                {
+                    int store = currentTerm.Data;
+                    currentTerm.Data = term.Data;
+                    term.Data = store;
+                }
+                term = term.Next;
             }
-            Console.Write(" -> ");
-            Console.Write("Null");
+
+            currentTerm = currentTerm.Next;
         }
     }
 }
