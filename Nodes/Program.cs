@@ -10,12 +10,11 @@ internal class Program
         Node node3 = new Node(27);
         Node node4 = new Node(-10);
 
-        node1.Next = node2;
-        node2.Next = node3;
-        node3.Next = node4;
+        node4.Next = node1;
+        node1.Next = node3;
+        node3.Next = node2;
 
-        SortNodes(node1);
-        Nodes(node1);
+        Nodes(node4);
     }
 
     static void Nodes(Node node)
@@ -29,27 +28,5 @@ internal class Program
         }
         Console.Write(" -> ");
         Console.Write("Null");
-    }
-
-    static void SortNodes(Node head)
-    {
-        Node currentTerm = head;
-        while (currentTerm != null)
-        {
-            Node term = currentTerm.Next;
-
-            while (term != null)
-            {
-                if (currentTerm.Data > term.Data)
-                {
-                    int store = currentTerm.Data;
-                    currentTerm.Data = term.Data;
-                    term.Data = store;
-                }
-                term = term.Next;
-            }
-
-            currentTerm = currentTerm.Next;
-        }
     }
 }
